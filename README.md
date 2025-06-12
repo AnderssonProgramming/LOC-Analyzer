@@ -2,6 +2,8 @@
 
 A Java command-line tool for counting lines of code in source files. This project follows the requirements for the "INTRODUCTION TO JAVA, MVN, AND GIT: LOC Counting" assignment.
 
+*You can find the source file (pdf) in [LOC Counter](<src/site/resources/1. EnunciadoTareaMVNGit-LOC.pdf>)*
+
 ## Description
 
 LOC Analyzer is a command-line utility that counts either physical lines (phy) or lines of code (loc) in source files. It can analyze individual files or recursively process directories and supports wildcard patterns.
