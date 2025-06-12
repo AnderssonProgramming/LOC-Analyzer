@@ -9,9 +9,25 @@ if "%~2"=="" (
     exit /b 1
 )
 
-REM Get the absolute path to the jar file
-set SCRIPT_DIR=%~dp0
-set JAR_PATH=%SCRIPT_DIR%target\psp0-1.0-SNAPSHOT-jar-with-dependencies.jar
+REM Set variables
+set COUNT_TYPE=%~1
+set FILE_PATTERN=%~2
+set JAR_FILE=target\psp0-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+REM Check if JAR file exists
+if not exist "%JAR_FILE%" (
+    echo Error: JAR file not found: %JAR_FILE%
+    echo Please build the project first with: mvn clean package
+    exit /b 1
+)
 
 REM Run the LOC-Analyzer with the provided arguments
-java -cp "%JAR_PATH%" edu.escuelaing.arem.App %*
+echo Running LOC analysis on %FILE_PATTERN% with type %COUNT_TYPE%...
+java -cp "%JAR_FILE%" edu.escuelaing.arem.App %COUNT_TYPE% %FILE_PATTERN%
+
+if %ERRORLEVEL% neq 0 (
+    echo Error running the LOC Analyzer. Exit code: %ERRORLEVEL%
+    exit /b %ERRORLEVEL%
+)
+
+exit /b 0

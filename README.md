@@ -33,33 +33,36 @@ LOC Analyzer is a command-line utility that counts either physical lines (phy) o
 
 ### Usage
 
-To count lines in a source file:
-
-```bash
-# On Windows
-countlines.bat phy|loc <file_or_pattern>
-
-# On Unix/Linux/macOS
-./countlines.sh phy|loc <file_or_pattern>
-```
-
-Alternatively, you can run the Java program directly:
+To count lines in a source file, use the following Java command:
 
 ```bash
 java -cp target/psp0-1.0-SNAPSHOT-jar-with-dependencies.jar edu.escuelaing.arem.App phy|loc <file_or_pattern>
 ```
 
+Alternatively, you can use the provided scripts (note that you might need to adjust permissions):
+
+```bash
+# On Windows
+countlines.bat phy|loc <file_or_pattern>
+countlines.ps1 phy|loc <file_or_pattern>
+
+# On Unix/Linux/macOS
+./countlines.sh phy|loc <file_or_pattern>
+```
+
 Examples:
 ```bash
 # Count physical lines in a file
-countlines.bat phy src/main/java/edu/escuelaing/arem/App.java
+java -cp target/psp0-1.0-SNAPSHOT-jar-with-dependencies.jar edu.escuelaing.arem.App phy src/main/java/edu/escuelaing/arem/App.java
 
 # Count code lines in a file
-countlines.bat loc src/main/java/edu/escuelaing/arem/App.java
+java -cp target/psp0-1.0-SNAPSHOT-jar-with-dependencies.jar edu.escuelaing.arem.App loc src/main/java/edu/escuelaing/arem/App.java
 
 # Count lines in all Java files in a directory
-countlines.bat loc "src/main/java/*.java"
+java -cp target/psp0-1.0-SNAPSHOT-jar-with-dependencies.jar edu.escuelaing.arem.App loc "src/main/java/*.java"
 ```
+
+**Note**: If you encounter issues with the batch or shell scripts, use the direct Java command method shown above. The scripts may require adjustments based on your operating system and environment. Common issues include execution policy restrictions in PowerShell or permission issues in Unix-like systems (which can be resolved with `chmod +x countlines.sh`).
 
 ## Class Diagram
 
@@ -126,9 +129,8 @@ These plugins ensure that the project can be easily built, tested, documented, a
 
 ## Author
 
-* Andersson Sánchez 
+* Andersson Sánchez
 
 ## License
 
 This project is licensed under the GPL-3.0 license - see the [LICENSE](LICENSE) file for details.
-
